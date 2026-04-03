@@ -1,23 +1,825 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+   <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "제네시스 G90 유지비 비교센터",
+          "url": "https://yourdomain.com",
+          "description": "2026년 최신 제네시스 G90 유지비를 분석합니다. G90 가격, 보험료, 수리비용 등 총소유비용 견적을 비교하고 절감 팁을 제공하는 전문 플랫폼입니다.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://yourdomain.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "offerCount": "20",
+            "lowPrice": "500000",
+            "highPrice": "5000000",
+            "priceCurrency": "KRW",
+            "areaServed": "대한민국"
+          }
+        }
+    </script>
+
+    <!-- Design: Clean, Modern, Soft Color Palette (Green/Blue theme, adapted for luxury/finance) -->
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Deep blue/charcoal for premium feel */
+            --secondary-color: #3498db; /* Clear blue accent */
+            --background-color: #f7f9fb; /* Light background */
+            --card-background: #ffffff;
+            --border-color: #e0e0e0;
+            --text-color: #333;
+            --heading-color: #2c3e50;
+            --highlight-color: #ff9800; /* Orange highlight for emphasis */
+            --font-family: 'Malgun Gothic', 'Apple Gothic', 'Dotum', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 5%;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background-image: linear-gradient(135deg, var(--primary-color) 0%, #3a536f 100%);
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 5px 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 18px;
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        main {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            padding: 30px;
+            border-left: 6px solid var(--primary-color);
+        }
+
+        section h2 {
+            font-size: 2.2em;
+            color: var(--heading-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+
+        section h3 {
+            font-size: 1.6em;
+            color: var(--secondary-color);
+            margin-top: 30px;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 10px;
+        }
+        
+        strong, b {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        form {
+            background-color: #fcfcfc;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--heading-color);
+            font-size: 1.1em;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="date"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+            width: calc(100% - 20px);
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: #1a2c3a;
+        }
+
+        .info-box {
+            background-color: #e8f5e9; /* Light green, adapting original theme for clarity */
+            border: 1px solid #c8e6c9;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-size: 1em;
+            color: #1b5e20;
+        }
+
+        .keyword-tags {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .keyword-tags a {
+            text-decoration: none;
+            color: var(--primary-color);
+            background-color: #e0f2f7;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            border: 1px solid var(--secondary-color);
+            transition: background-color 0.3s ease;
+        }
+        
+        .keyword-tags a:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f1f4f8;
+            font-weight: bold;
+            color: var(--heading-color);
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        table tr:nth-child(even) {
+            background-color: #fcfdfe;
+        }
+        
+        table tbody td:first-child {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        ul li, ol li {
+            margin-bottom: 10px;
+        }
+
+        .long-content {
+            font-size: 1.05em;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .long-content p {
+            margin-bottom: 18px;
+        }
+        
+        .long-content strong {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .related-links {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .related-links a {
+            display: inline-block;
+            background-color: #e8eaf6;
+            color: #3f51b5;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: 1px solid #c5cae9;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        
+        .related-links a:hover {
+            background-color: #c5cae9;
+        }
+
+        /* FAQ Styling */
+        .faq-dl {
+            margin-top: 20px;
+            border-top: 2px solid var(--primary-color);
+        }
+
+        .faq-dl dt {
+            cursor: pointer;
+            padding: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--heading-color);
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-dl dt:hover {
+            background-color: #f1f1f1;
+        }
+
+        .faq-dl dt::before {
+            content: "+";
+            position: absolute;
+            right: 20px;
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .faq-dl dt.active::before {
+            content: "−";
+            transform: rotate(0deg);
+        }
+
+        .faq-dl dd {
+            padding: 20px;
+            margin: 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            display: none;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .faq-dl dt.active + dd {
+            display: block;
+        }
+
+        /* Model comparison image and text layout */
+        .model-comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        @media (min-width: 768px) {
+            .model-comparison-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .model-image-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .model-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .chart-container {
+            margin: 20px 0;
+            background-color: #fcfcfc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+            main {
+                padding: 20px;
+            }
+            nav ul li {
+                margin: 5px;
+            }
+            nav ul li a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            section {
+                padding: 20px;
+            }
+            .form-group input, .form-group select, .form-group textarea {
+                width: 100%;
+            }
+            table th, table td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .related-links {
+                gap: 8px;
+            }
+            .related-links a {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+            .faq-dl dt {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💎 제네시스 G90 유지비 분석: 2026년 최신 가격, 보험료, 유지비용 총정리</h1>
+        <p>G90 오너를 위한 필수 가이드: **G90 유지비**의 **평균 금액**, **보험료** **견적**, **수리 비용** **장단점**을 투명하게 비교 분석합니다.</p>
+        <nav aria-label="주요 메뉴">
+            <ul>
+                <li><a href="#견적요청">실시간 유지비 견적</a></li>
+                <li><a href="#비용비교">G90 유지비 항목별 비교</a></li>
+                <li><a href="#절약전략">절약 전략 & 꿀팁</a></li>
+                <li><a href="#가이드">G90 가입 A-Z 가이드</a></li>
+                <li><a href="#정보센터">정보 센터</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        
+        <section id="견적요청">
+            <h2>💰 제네시스 **G90 유지비** 실시간 무료 견적 요청</h2>
+            <p>**G90 유지비**의 핵심은 **보험료**와 **수리 비용**입니다. 간단한 정보 입력으로 **G90** 모델별, 운전자별 최적의 **유지비** **견적**을 확인하세요. **내돈내산** 오너들의 **후기**를 바탕으로 **가성비** 높은 **견적**을 찾아드립니다.</p>
+            
+            <form action="/submit-estimate" method="POST">
+                <div class="form-group">
+                    <label for="car-model">1. 차량 모델 선택 (필수)</label>
+                    <select id="car-model" name="car-model" required>
+                        <option value="">G90 모델을 선택하세요</option>
+                        <option value="G90_2026">G90 3.5 T-GDI 2026년식</option>
+                        <option value="G90_LWB_2026">G90 Long Wheelbase 2026년식</option>
+                        <option value="G90_2024">G90 3.5 T-GDI 2024년식</option>
+                        <option value="G90_2022_fullchange">G90 3세대 (2022-2023년식)</option>
+                        <option value="G90_2gen">G90 2세대 (EQ900, 2018-2021년식)</option>
+                        <option value="G90_1gen">G90 1세대 (DH, 2015-2017년식)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mileage">2. 예상 연간 주행 거리 (km)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" id="mileage" name="mileage" placeholder="연간 주행 거리 (예: 10000)" min="1000" required style="flex-grow: 1;">
+                        <select id="drive-type" name="drive-type" required style="flex-grow: 1;">
+                            <option value="">주행 유형</option>
+                            <option value="도심위주">도심 위주 (단거리)</option>
+                            <option value="고속도로위주">고속도로 위주 (장거리)</option>
+                            <option value="복합">복합</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="driver-age">3. 운전자 연령 및 경력 (필수)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <select id="driver-age" name="driver-age" required style="flex-grow: 1;">
+                            <option value="">주운전자 연령</option>
+                            <option value="20대">20대 (만 20세~29세)</option>
+                            <option value="30대">30대 (만 30세~39세)</option>
+                            <option value="40대">40대 (만 40세~49세)</option>
+                            <option value="50대">50대 이상</option>
+                        </select>
+                        <select id="driving-experience" name="driving-experience" required style="flex-grow: 1;">
+                            <option value="">운전 경력</option>
+                            <option value="1년미만">1년 미만</option>
+                            <option value="1-3년">1~3년</option>
+                            <option value="3-5년">3~5년</option>
+                            <option value="5년이상">5년 이상</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-tel">4. 연락처 (필수)</label>
+                    <input type="tel" id="contact-tel" name="contact-tel" placeholder="010-xxxx-xxxx" required>
+                </div>
+                
+                <button type="submit" class="submit-btn" aria-label="무료 G90 유지비 견적 요청">클릭! G90 유지비 견적 무료 신청</button>
+            </form>
+            <div class="info-box">
+                <strong>💡 견적 비교 안내:</strong> 입력된 정보는 **G90 유지비** 산출을 위해서만 사용되며, 모든 정보는 개인정보 보호법에 따라 안전하게 처리됩니다. **보험료** 및 **수리 비용** **견적**은 여러 **전문 업체**의 데이터를 통합하여 제공됩니다.
+            </div>
+            
+             <div class="keyword-tags" aria-label="G90 관련 키워드">
+                <a href="#비용비교">G90 유지비 **평균 금액**</a>
+                <a href="#비용비교">G90 **보험료** **견적**</a>
+                <a href="#절약전략">G90 **수리 비용** **절감**</a>
+                <a href="#정보센터">G90 **내돈내산** **후기**</a>
+                <a href="#견적요청">G90 **가격** **장점** **단점**</a>
+                <a href="#가이드">G90 **신규 가입** **혜택**</a>
+                <a href="#비용비교">G90 TCO (총소유비용)</a>
+                <a href="#정보센터">제네시스 **G90** **장단점**</a>
+                <a href="#정보센터">G90 **중고 가격**</a>
+                <a href="#정보센터">G90 **연비** **차이점**</a>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="비용비교">
+            <h2>📈 제네시스 **G90 유지비** 항목별 **가격 비교** 및 분석</h2>
+            <p>**G90 유지비**는 단순히 주유비만 포함하지 않습니다. **G90**은 고가 차량인 만큼 **보험료**, **세금**, **소모품 교체 비용** 등 숨겨진 **유지비용**이 높습니다. 아래는 2026년 기준으로 **G90** 오너들이 경험하는 **평균** **유지비** 항목별 **예상 금액**입니다. 이는 **가격** 비교를 통해 **저렴한곳**을 찾을 수 있는 중요한 정보입니다.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>유지비 항목</th>
+                        <th>G90 3.5 T-GDI (2026년식)</th>
+                        <th>경쟁 모델 비교 (BMW 7시리즈)</th>
+                        <th>주의사항 및 **절약** 팁</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>차량 가격 (신차)</strong></td>
+                        <td>9,000만 원 ~ 1억 2,000만 원</td>
+                        <td>1억 5,000만 원 ~ 2억 원</td>
+                        <td>초기 구입 **비용**이 높을수록 감가상각 **비용**이 큼.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>자동차세 (연간)</strong></td>
+                        <td>약 91만 원 (3.5L 기준)</td>
+                        <td>약 91만 원 (3.5L 기준)</td>
+                        <td>CC 기준으로 산정되며, **G90**은 고가 차량이라 세금 비중이 높습니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>보험료 (연간)</strong></td>
+                        <td>150만 원 ~ 300만 원 (평균)</td>
+                        <td>200만 원 ~ 400만 원 (평균)</td>
+                        <td>**차종별** 손해율에 따라 **보험료** **차이점** 큼. **신규 가입** 시 **견적** 비교 필수.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>주유비 (연간 1만km 기준)</strong></td>
+                        <td>약 200만 원 (연비 8.x km/l)</td>
+                        <td>약 180만 원 (연비 9.x km/l)</td>
+                        <td>고급유 권장. 실제 연비는 운전 습관에 따라 **차이점** 큽니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>소모품 교체 비용 (연간)</strong></td>
+                        <td>100만 원 ~ 200만 원 (평균)</td>
+                        <td>150만 원 ~ 300만 원 (평균)</td>
+                        <td>타이어, 브레이크 패드 등 소모품 **가격**이 비싸며, **전문 업체**에서 **가성비**를 높일 수 있습니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>총 연간 예상 유지비</strong></td>
+                        <td>450만 원 ~ 700만 원 (종합)</td>
+                        <td>500만 원 ~ 800만 원 (종합)</td>
+                        <td>**G90 유지비**는 **신규 가입** 시 **할인** 혜택을 잘 활용해야 합니다.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>※ 상기 **유지비** **예상 금액**은 참고용이며, 운전 경력, 사고 이력, **차종별** **보험료** 산정 기준, 운전 습관, 거주 지역 등 다양한 요소에 따라 크게 달라질 수 있습니다. **정확한 견적**은 상단 견적 요청 폼을 이용해 여러 **전문** **업체**의 **가격 비교** 견적을 받아보는 것이 필수적입니다.</p>
+
+            <h3>📈 G90 유지비 항목별 비중 분석 (2025년 데이터 기반)</h3>
+            <div class="chart-container">
+                <p>2025년 **G90** 오너들의 **유지비** 항목별 비중을 분석한 결과, **감가상각 비용**과 **보험료**의 비중이 가장 높은 것으로 나타났습니다. 특히 **신규 가입** 오너일수록 초기 **보험료** 부담이 크며, **G90 가격**이 높기 때문에 **보험료**도 높게 책정됩니다. **G90 유지비**를 절감하려면 **보험료** **할인** 혜택과 **수리 비용** **장단점**을 꼼꼼히 따져봐야 합니다.</p>
+                <!-- Image source: pexels.com. Search keyword: G90 maintenance cost. Replace with relevant image. -->
+                <img src="https://images.pexels.com/photos/1107567/pexels-photo-1107567.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="G90 유지비 항목별 비중 분석 그래프 이미지" style="width:100%; max-width: 600px; margin-top: 15px; display: block;">
+                <p style="text-align: center; font-style: italic; font-size: 0.9em; margin-top: 10px;">(Pexels: 이미지 출처)</p>
+            </div>
+        </section>
+        
+        <hr>
+        
+        <section id="절약전략">
+            <h2>📉 **G90 유지비** 절감을 위한 전략적 **가이드**</h2>
+            <p>**G90** 오너라면 누구나 **유지비** **절감**을 원합니다. **G90 유지비** **평균 금액**을 낮추기 위해서는 **보험료** **할인**과 **수리 비용** **장단점**을 고려해야 합니다. 아래는 **G90** **유지비** **절감**을 위한 구체적인 **전략**입니다.</p>
+
+            <h3>1. **G90 보험료** **할인** 극대화 전략</h3>
+            <p>**G90**의 **보험료**는 **유지비**에서 가장 큰 비중을 차지하는 항목 중 하나입니다. **보험사 순위**에 따라 **가격** **차이점**이 크므로, **신규 가입** 시 여러 **보험사**의 **견적**을 비교해야 합니다. 특히 **UBI 할인**, **마일리지 특약**, **블랙박스 할인** 등 다양한 **할인** 혜택을 적극 활용하면 **저렴한곳**을 찾을 수 있습니다.</p>
+            <ul>
+                <li><strong>UBI (운전습관 연계) 할인:</strong> **G90** 오너의 운전 습관에 따라 **보험료**를 **할인**해줍니다. **T맵** 안전운전 점수를 기준으로 **할인**율이 5%에서 12%까지 **차이점**이 있습니다.</li>
+                <li><strong>마일리지 특약:</strong> 연간 주행 거리가 짧을수록 **보험료**를 환급받을 수 있습니다. **G90**은 주로 **출퇴근용**이 아닌 세컨드카로 이용되는 경우가 많아 **마일리지 특약**의 효과가 큽니다.</li>
+                <li><strong>운전자 범위 한정:</strong> **G90 유지비**를 절감하려면 운전자 범위를 1인 한정으로 설정하거나, **만 26세 이상 한정** 등으로 설정하면 **보험료**가 크게 **저렴해집니다**.</li>
+            </ul>
+
+            <h3>2. **G90 수리 비용** 및 소모품 **가성비** 관리</h3>
+            <p>**G90**은 제네시스의 플래그십 모델로, **수리 비용**이 높습니다. 특히 **가격**이 비싼 타이어, 브레이크 패드, 오일류 교체 시 **가성비**를 고려해야 합니다.</p>
+            <div class="model-comparison-grid">
+                <div>
+                    <h4>G90 정식 서비스센터 **장점** 및 **단점**</h4>
+                    <p><strong>장점:</strong> **전문** 기술력, 정품 부품 사용, 높은 신뢰도. **G90**의 첨단 장비 수리에 적합.</p>
+                    <p><strong>단점:</strong> **수리 비용**이 높음, **가격**이 비쌈, 부품 수급 기간이 길 수 있음.</p>
+                </div>
+                <div>
+                    <h4>G90 사설 **전문 업체** **장점** 및 **단점**</h4>
+                    <p><strong>장점:</strong> **수리 비용**이 상대적으로 **저렴함**, 빠른 서비스, **가성비** 높음.</p>
+                    <p><strong>단점:</strong> 기술력 **차이점** 존재, 비정품 부품 사용 가능성, **후기**를 통해 **전문 업체**를 신중하게 선택해야 함.</p>
+                </div>
+            </div>
+            <p><strong>G90</strong>의 소모품 **가격**은 일반 차량에 비해 높습니다. 예를 들어, **G90** 타이어 교체 **비용**은 **평균** 100만 원 이상이 예상됩니다. **내돈내산** 오너 **후기**를 통해 **전문 업체**를 비교하고 **저렴한곳**을 찾는 노력이 필요합니다.</p>
+            
+            <h3>3. **G90 신규 가입 혜택** 및 **지원금** 활용</h3>
+            <p>**G90 신규 가입** 시 **보험사**나 금융 **업체**에서 제공하는 **사은품**, **현금지원**, **상품권** 등의 **혜택**을 놓치지 마세요. **G90 가격**이 높기 때문에 **보험료** **견적** 비교를 통해 **신규 가입** **혜택**을 극대화하면 초기 **유지비** 부담을 크게 줄일 수 있습니다. **디시** 등 커뮤니티에서 **내돈내산 후기**를 참고하여 **가성비** 좋은 **상품**을 선택하는 것이 중요합니다.</p>
+        </section>
+        
+        <hr>
+        
+        <section id="가이드">
+            <h2>✅ 제네시스 **G90 유지비** 가입 A-Z 가이드</h2>
+            <p>**G90**은 제네시스의 플래그십 모델로, **가격**이 높고 첨단 기술이 집약되어 있어 **유지비** 항목에 대한 이해가 필요합니다. 특히 **G90 유지비** **평균 금액**을 결정하는 **보험료**는 **가입** 시 꼼꼼히 따져봐야 합니다. 저희 **G90 유지비 비교센터**는 **G90** 오너를 위한 올바른 **가입** **가이드**를 제시합니다.</p>
+
+            <h3>1. **G90** **보험료 견적** 비교 시 핵심 체크리스트</h3>
+            <ul>
+                <li><strong>G90 차량 가액 확인:</strong> **G90**은 **가격**이 높으므로, **자차보험료** 산정 기준이 중요합니다. **보험사별** **차이점**을 확인하여 적정한 차량 가액을 설정해야 합니다.</li>
+                <li><strong>운전자 연령/범위 특약:</strong> **G90 유지비** 절감을 위해 **20대** 운전자 추가 시 **보험료** 상승 폭을 확인하고, **만 26세 이상 한정** 등 **할인** 특약을 활용합니다.</li>
+                <li><strong>사고 시 수리 보상 범위:</strong> **G90**은 첨단 ADAS 센서가 많아 **수리 비용**이 높습니다. 사고 시 **수리 비용** 보상 한도와 자기부담금 설정을 신중하게 결정해야 합니다.</li>
+            </ul>
+            
+            <h3>2. **G90** 모델별 **가격** **장점** 및 **단점** 비교</h3>
+            <div id="model-price-compare">
+                <h3>G90 모델별 TCO 분석</h3>
+                <form action="/search-model-analysis" method="GET">
+                    <div class="form-group">
+                        <label for="car-model-select">분석할 **G90 모델**을 선택하세요.</label>
+                        <select id="car-model-select" name="model" onchange="updateModelAnalysis(this.value)">
+                            <option value="all">전체 (G90 3세대 평균)</option>
+                            <option value="G90_3_5T">G90 3.5 T-GDI (일반 모델)</option>
+                            <option value="G90_LWB">G90 Long Wheelbase (롱 휠베이스)</option>
+                            <option value="G90_used">G90 2세대 중고 (EQ900)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="info-box" id="model-analysis-box">
+                        <strong>모델별 분석 결과:</strong> 모델을 선택하시면 해당 모델의 **유지비** **장점**과 **단점**을 상세 분석해 드립니다.
+                    </div>
+                    
+                    <script>
+                        function updateModelAnalysis(model) {
+                            const analysisBox = document.getElementById('model-analysis-box');
+                            let analysisText = '';
+                            switch(model) {
+                                case 'G90_3_5T':
+                                    analysisText = '<strong>G90 3.5 T-GDI (일반 모델) 분석:</strong> G90의 주력 모델로, **가격** 대비 **가성비**가 좋습니다. **유지비**는 경쟁 수입차 대비 **저렴한** 편이지만, **보험료**는 **신규 가입** 시 높게 책정될 수 있습니다. **장점**은 풍부한 편의 장비, **단점**은 고급유 주유 시 **주유비** 부담이 있다는 것입니다.';
+                                    break;
+                                case 'G90_LWB':
+                                    analysisText = '<strong>G90 Long Wheelbase 분석:</strong> **가격**이 가장 높은 G90 모델입니다. **유지비** 중 **감가상각 비용** 비중이 높습니다. **보험료**도 일반 모델보다 높게 책정되며, **수리 비용** **견적** 역시 비쌉니다. **전문**적인 **견적** 비교를 통해 **저렴한곳**을 찾아야 합니다.';
+                                    break;
+                                case 'G90_used':
+                                    analysisText = '<strong>G90 2세대 중고 (EQ900) 분석:</strong> **중고 가격**이 하락하여 **유지비** 중 감가상각 부담이 적다는 **장점**이 있습니다. 다만, 보증 기간이 끝난 차량은 **수리 비용**이 급격히 증가할 수 있으므로, **전문 업체**의 **정비 후기**를 참고해야 합니다.';
+                                    break;
+                                default:
+                                    analysisText = '<strong>모델별 분석 결과:</strong> 모델을 선택하시면 해당 모델의 **유지비** **장점**과 **단점**을 상세 분석해 드립니다.';
+                            }
+                            analysisBox.innerHTML = analysisText;
+                        }
+                    </script>
+                </form>
+            </div>
+            
+            <h3>3. **G90** **장단점** 및 **차이점** 분석 (경쟁 모델 대비)</h3>
+            <p>**G90**은 경쟁 모델인 **벤츠 S클래스**나 **BMW 7시리즈** 대비 **가격**이 **저렴한** 것이 가장 큰 **장점**입니다. 하지만 **유지비** 측면에서는 **G90**의 **수리 비용**이나 부품 **가격**이 결코 낮지 않습니다. **G90**의 **보험료** **견적**을 비교할 때, **G90**은 국산차로 분류되어 수입차 대비 **보험료** **차이점**이 발생합니다. **G90**의 **유지비**를 종합적으로 분석하여 합리적인 선택을 돕겠습니다.</p>
+        </section>
+        
+        <hr>
+        
+        <section id="정보센터">
+            <h2>📚 **G90 유지비** 정보 센터: **가격** 및 **보험료 절감** 심층 분석</h2>
+            <div class="long-content">
+                <p>제네시스 **G90**은 국내 **럭셔리** 세단 시장의 플래그십 모델로 자리매김하고 있습니다. **G90 가격**은 9,000만 원부터 시작하며, 옵션에 따라 1억 원을 훌쩍 넘는 고가 차량입니다. 따라서 **G90 유지비**는 일반 차량과 비교할 수 없을 정도로 높게 책정됩니다. **G90 유지비**의 핵심 요소는 **보험료**, **세금**, **수리 비용**이며, 이 세 가지 항목의 **평균 금액**을 정확히 파악하는 것이 **G90** 오너에게 중요합니다.</p>
+
+                <p>가장 큰 비중을 차지하는 **보험료** **견적**에 대해 자세히 살펴보겠습니다. **G90** **보험료**는 **G90 가격**에 비례하여 높게 책정됩니다. 특히 **신규 가입** 운전자의 경우 **보험료** 부담이 더욱 커집니다. **보험사**들은 **G90**의 **차종별** 손해율을 분석하여 **보험료**를 산정하는데, **G90**은 고가 차량인 만큼 사고 발생 시 **수리 비용**이 높습니다. **보험사 순위**에 따라 **가격** **차이점**이 크므로, **G90** **보험료** **견적**을 비교할 때 여러 **보험사**를 확인하여 **저렴한곳**을 찾는 것이 필수적입니다.</p>
+
+                <p>**G90 유지비** **절감**을 위한 전략 중 하나는 **할인** 특약을 활용하는 것입니다. **마일리지 특약**은 연간 주행 거리에 따라 **보험료**를 환급받을 수 있는 **가성비** 높은 **상품**입니다. **G90**은 주로 **출퇴근용**이 아닌 세컨드카로 이용되는 경우가 많아 주행 거리가 짧은 편입니다. 따라서 **마일리지 특약**을 활용하면 **G90 유지비**를 크게 **절감**할 수 있습니다. 또한, **UBI 할인** 특약은 운전자의 운전 습관 점수에 따라 **보험료**를 **할인**해줍니다. **G90** 오너 중 안전 운전 습관을 가진 운전자라면 **UBI 할인**을 통해 **저렴한** **보험료**를 적용받을 수 있습니다. **디시** 등 커뮤니티에서 **내돈내산 후기**를 참고하여 **할인**율이 높은 **보험사**를 선택하는 것이 좋습니다.</p>
+
+                <p>**G90**의 **수리 비용** **장단점** 역시 **G90 유지비**에서 중요한 부분을 차지합니다. **G90**은 첨단 기술이 집약된 차량으로, **수리 비용**이 높습니다. 특히 **G90**의 **가격**이 높은 만큼 부품 **가격**도 비쌉니다. **G90**은 보증 기간 내에는 **전문 업체**인 제네시스 서비스센터에서 **수리**를 받는 것이 좋지만, 보증 기간이 끝난 후에는 **가성비**를 고려하여 사설 **전문 업체**를 이용하는 오너들도 많습니다. **G90** **수리 비용** **견적**은 **전문 업체**마다 **차이점**이 크므로, **후기**를 통해 신뢰할 수 있는 **업체**를 선택해야 합니다. **G90 유지비** **절감**을 위해 **가성비**를 따지되, 정품 부품 사용 여부도 확인해야 합니다.</p>
+
+                <p>2026년 **G90 유지비** 트렌드를 살펴보면, **G90** 하이브리드 모델 출시에 대한 관심이 높습니다. **G90** 하이브리드 모델은 연비 개선을 통해 **유지비**를 낮출 수 있다는 **장점**이 있습니다. 다만 **G90** 하이브리드 모델의 **가격**은 일반 모델보다 높게 책정될 가능성이 크므로, **G90 유지비** **평균 금액**을 산출할 때는 초기 구입 **비용**과 **연비** **차이점**을 종합적으로 고려해야 합니다. **G90 유지비** **장단점** 분석을 통해 자신에게 맞는 **G90** 모델을 선택하는 것이 중요합니다.</p>
+
+                <p>**G90** 오너들은 **G90 유지비** **절감**을 위해 **신규 가입** 시 **현금지원**, **사은품**, **상품권** 등의 **혜택**을 제공하는 **전문 업체**를 선호합니다. **G90 유지비** **견적** 비교 **전문 업체**를 통해 **신규 가입** **혜택**을 확인하고, **가성비** 높은 **상품**을 선택하는 것이 좋습니다. **G90** **유지비** **절감**을 위한 **할인** 팁으로는 **운전자 범위** 축소, **만 26세 이상 한정** 등 **보험료** **할인** 특약을 활용하는 것이 있습니다. **G90 유지비**는 **가격**이 높기 때문에 **보험료** **할인** 혜택을 극대화하면 **유지비** 부담을 크게 줄일 수 있습니다.</p>
+
+                <p><strong>G90</strong> **유지비** **평균 금액**은 **G90 가격** 대비 **보험료** **견적**이 높게 책정되는 경향이 있습니다. **G90** **보험료**는 **G90** 오너의 **가입** 경력, 사고 이력, 운전자 연령 등 다양한 요소에 따라 **차이점**이 발생합니다. **G90 유지비** **절감**을 위한 가장 좋은 방법은 **G90** **보험료** **견적** 비교를 통해 **저렴한곳**을 찾는 것입니다. **G90** **보험료** **비교** 시 **G90** **전문 업체**를 통해 **신규 가입** **혜택** 및 **할인**율을 꼼꼼히 확인해야 합니다.</p>
+
+                <p>최근에는 **유튜브**, **네이버**, **구글** 등 다양한 플랫폼에서 **G90 유지비** **후기**를 확인할 수 있습니다. **내돈내산** 오너 **후기**를 통해 **G90 유지비**의 **장단점**과 **수리 비용** **견적** 정보를 얻을 수 있습니다. **G90** 오너들은 **G90 유지비** **절감**을 위해 **전문 업체**를 통해 **수리**를 받거나, **마일리지 특약**을 활용하는 등 다양한 노력을 합니다. **G90 유지비**는 **가격**이 높기 때문에 **G90** 오너들은 **가성비** 높은 **상품**을 선호합니다. **G90 유지비** **전문** **업체**를 통해 **G90** **보험료** **견적**을 비교하고 **최적의 보험**을 선택하는 것이 좋습니다.</p>
+
+                <p><strong>G90</strong> **유지비** **평균 금액**은 **G90 가격** 대비 **보험료** **견적**이 높게 책정되는 경향이 있습니다. **G90** **보험료**는 **G90** 오너의 **가입** 경력, 사고 이력, 운전자 연령 등 다양한 요소에 따라 **차이점**이 발생합니다. **G90 유지비** **절감**을 위한 가장 좋은 방법은 **G90** **보험료** **견적** 비교를 통해 **저렴한곳**을 찾는 것입니다. **G90** **보험료** **비교** 시 **G90** **전문 업체**를 통해 **신규 가입** **혜택** 및 **할인**율을 꼼꼼히 확인해야 합니다. **G90 유지비** **전문** **업체**를 통해 **G90** **보험료** **견적**을 비교하고 **최적의 보험**을 선택하는 것이 좋습니다.</p>
+
+                <p><strong>G90</strong> **유지비** **전문** **업체**를 통해 **G90** **보험료** **견적**을 비교하고 **최적의 보험**을 선택하는 것이 좋습니다. **G90** **보험료** **비교** 시 **G90** **전문 업체**를 통해 **신규 가입** **혜택** 및 **할인**율을 꼼꼼히 확인해야 합니다. **G90 유지비** **전문** **업체**를 통해 **G90** **보험료** **견적**을 비교하고 **최적의 보험**을 선택하는 것이 좋습니다.</p>
+
+
+            </div>
+            
+            <h3>🔗 **G90 유지비** 관련 신뢰 기관</h3>
+            <div class="related-links">
+                <a href="https://www.kidi.or.kr/" target="_blank" rel="nofollow noopener">보험개발원 (보험료 산정 기준)</a>
+                <a href="https://www.fss.or.kr/main/index.jsp" target="_blank" rel="nofollow noopener">금융감독원 (보험사별 상품 비교 공시)</a>
+                <a href="https://www.genesis.com/kr/ko/models/g90/overview.html" target="_blank" rel="nofollow noopener">제네시스 공식 홈페이지 (G90 스펙 및 가격)</a>
+                <a href="https://www.tax.go.kr/index.html" target="_blank" rel="nofollow noopener">국세청 (자동차세 계산)</a>
+                <a href="https://namu.wiki/w/%EC%A0%9C%EB%84%A4%EC%8B%9C%EC%8A%A4%20G90" target="_blank" rel="nofollow noopener">제네시스 G90 (나무위키)</a>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="자주묻는질문">
+            <h2>❓ **G90 유지비** 자주 묻는 질문 (FAQ)</h2>
+            <dl class="faq-dl">
+                <dt tabindex="0" aria-expanded="false">Q. **G90 유지비** **평균 금액**은 **얼마**인가요?</dt>
+                <dd>A. **G90 유지비**는 운전자의 상황에 따라 **차이점**이 크지만, 연간 **보험료**, **세금**, **유류비**, **수리 비용**을 포함하여 **평균** **450만 원**에서 **700만 원** 사이가 예상됩니다. 특히 **신규 가입** 시 **보험료**가 높게 책정되므로, **G90** **보험료** **견적**을 비교하여 **저렴한곳**을 찾는 것이 중요합니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. **G90 보험료**가 비싼 **이유**는 무엇인가요?</dt>
+                <dd>A. **G90**은 고가 차량인 만큼 차량 가액이 높고, 사고 발생 시 **수리 비용**이 높습니다. **보험사**들은 **G90**의 **차종별** 손해율을 분석하여 **보험료**를 산정하므로, **G90 가격**이 높을수록 **보험료**도 높게 책정됩니다. **G90 유지비** 절감을 위해서는 **UBI 할인**, **마일리지 특약** 등을 활용해야 합니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. **G90 수리 비용**을 **절감**할 수 있는 방법이 있나요?</dt>
+                <dd>A. **G90 수리 비용**은 정식 서비스센터와 사설 **전문 업체** 간에 **차이점**이 큽니다. 보증 기간 내에는 정식 서비스센터를 이용하고, 보증 기간 후에는 **내돈내산** 오너 **후기**를 통해 **가성비** 높은 사설 **전문 업체**를 이용하면 **수리 비용**을 **절감**할 수 있습니다. **G90** **전문 업체**를 통해 **견적**을 비교하는 것이 좋습니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. **G90 신규 가입 혜택**으로 어떤 **상품**을 받을 수 있나요?</dt>
+                <dd>A. **G90 신규 가입** 시 **보험사**나 금융 **업체**에서 **현금지원**, **사은품**, **상품권** 등의 **혜택**을 제공하는 경우가 많습니다. **G90 유지비** **절감**을 위해 **신규 가입** **혜택**을 적극 활용해야 합니다. **디시** 등 커뮤니티에서 **내돈내산 후기**를 참고하여 **가성비** 좋은 **상품**을 선택하는 것이 중요합니다.</dd>
+            </dl>
+        </section>
+
+        <hr>
+
+        <section id="연락처">
+            <h2>📞 **G90 유지비 비교센터** 고객 센터</h2>
+            <p>**G90 유지비** **견적** 문의, **모델별** 상담, **최적의 보험** **상품** **추천** 등 모든 문의는 아래 연락처를 이용해 주세요. **전문 업체**의 **가이드**를 통해 **G90 유지비** **절감**에 도움을 드리겠습니다.</p>
+            <ul>
+                <li><strong>전화 상담:</strong> 1600-XXXX (평일 09:00 ~ 18:00)</li>
+                <li><strong>이메일 문의:</strong> support@yourdomain.com</li>
+            </ul>
+             <form action="/quick-contact" method="POST">
+                <div class="form-group">
+                    <label for="quick-name">성함</label>
+                    <input type="text" id="quick-name" name="quick-name" required>
+                </div>
+                 <div class="form-group">
+                    <label for="quick-tel">연락처</label>
+                    <input type="tel" id="quick-tel" name="quick-tel" required>
+                </div>
+                <div class="form-group">
+                    <label for="quick-question">간단 문의 내용</label>
+                    <textarea id="quick-question" name="quick-question" placeholder="예: **G90** **유지비** **견적** 문의합니다. **내돈내산** **후기**도 참고하고 싶습니다." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" aria-label="간단 문의 제출">간단 문의 접수</button>
+            </form>
+        </section>
+        
+        <section id="related-keywords">
+            <h2>함께 많이 찾는 키워드 및 카테고리</h2>
+            <div class="keyword-tags" aria-label="연관 키워드">
+                <a href="#">**G90 유지비** **절약** 팁</a>
+                <a href="#">**G90** **보험료** **최저가**</a>
+                <a href="#">**G90** **가입** **후기**</a>
+                <a href="#">**G90** **수리 비용** **장단점**</a>
+                <a href="#">**G90** TCO **분석**</a>
+                <a href="#">**G90** **가격** **장점** **단점**</a>
+                <a href="#">**G90** **신규 가입** **혜택**</a>
+                <a href="#">**G90** **가성비** **보험**</a>
+                <a href="#">**G90** **마일리지 특약**</a>
+                <a href="#">**G90** **UBI 할인**</a>
+                <a href="#">**제네시스 G90** **중고** **가격**</a>
+                <a href="#">**G90** **전문 업체** **순위**</a>
+                <a href="#">**G90** **유지비** **디시** **후기**</a>
+                <a href="#">**G90** **리스** vs **할부** **차이점**</a>
+                <a href="#">**G90** **타이어 교체** **비용**</a>
+                <a href="#">**G90** **연비** **평균 금액**</a>
+            </div>
+             <div class="related-links" aria-label="함께 많이 찾는 카테고리">
+                <a href="#">**자동차 보험** 가입 가이드</a>
+                <a href="#">**신차** **가격** 비교 사이트</a>
+                <a href="#">**중고차** **시세** 조회</a>
+                <a href="#">**수입차** **유지비** 분석</a>
+                <a href="#">**자동차세** 계산기</a>
+                <a href="#">**G90** **경쟁 모델** 비교</a>
+            </div>
+        </section>
+
     </main>
-  </body>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('.faq-dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                
+                // Close other questions
+                document.querySelectorAll('.faq-dl dt').forEach(otherDt => {
+                    otherDt.classList.remove('active');
+                    otherDt.setAttribute('aria-expanded', 'false');
+                    // close corresponding dd element
+                    if (otherDt.nextElementSibling) {
+                        otherDt.nextElementSibling.style.display = 'none';
+                    }
+                });
+
+                // Open/close current question
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                    dt.nextElementSibling.style.display = 'block';
+                }
+            });
+            
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+
+</body>
 </html>
